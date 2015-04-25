@@ -7,7 +7,7 @@
  * audio_hw_setup_t
  * audio_hw_err_t
  */
-struct __audio_hw_io_t {
+typedef struct __audio_hw_io_t {
     audio_hw_sample_t *in;
     audio_hw_sample_t *out;
     int                length;
@@ -21,11 +21,11 @@ struct __audio_hw_io_t {
  * A function, such as an interrupt, should call this function, filling the
  * fields of the audio_hw_io_t struct and passing this struct.
  */
-extern void audio_hw_io(audio_hw_io_t params);
+extern void audio_hw_io(audio_hw_io_t *params);
 
 /* This must be implemented by a low level driver and then called by the
  * application to start the processing of audio.
  */
-audio_hw_err_t audio_hw_setup(audio_hw_setup_t params)
+extern audio_hw_err_t audio_hw_setup(audio_hw_setup_t *params);
 
 #endif /* AUDIO_HW_H */
