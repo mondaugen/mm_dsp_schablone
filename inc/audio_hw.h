@@ -24,8 +24,24 @@ typedef struct __audio_hw_io_t {
 extern void audio_hw_io(audio_hw_io_t *params);
 
 /* This must be implemented by a low level driver and then called by the
- * application to start the processing of audio.
+ * application to setup the processing of audio.
  */
 extern audio_hw_err_t audio_hw_setup(audio_hw_setup_t *params);
+
+/* This must be implemented by a low level driver and start the audio running */
+extern audio_hw_err_t audio_hw_start(audio_hw_setup_t *params);
+
+/* This must be implemented and return the sample rate */
+unsigned int audio_hw_get_sample_rate(void *data);
+
+/* This must be implemented and return the block size in frames
+ * (block_size*nchannels = buffer size) */
+unsigned int audio_hw_get_block_size(void *data);
+
+/* This must return the number of input channels */
+unsigned int audio_hw_get_num_input_channels(void *data);
+
+/* This must return the number of output channels */
+unsigned int audio_hw_get_num_output_channels(void *data);
 
 #endif /* AUDIO_HW_H */
