@@ -12,6 +12,18 @@
  * where you get the midi into your program so you can do stuff with it. */
 extern void midi_hw_process_msg(MIDIMsg *msg);
 
+/* This function indicates to the application that a systex start byte was
+ * received. It must be defined by the application, however, if your application
+ * doesn't implement sysex, the function body can just be empty. */
+extern void midi_hw_signal_sysex_start(char byte);
+
+/* Similar to midi_hw_signal_sysex_start but passes a sysex data byte to the
+ * application. Again optional meaning the function body can be empty. */
+extern void midi_hw_send_sysex_byte(char byte);
+
+/* Indicates the sysex message is finished. Again optional. */
+extern void midi_hw_send_sysex_end(char byte);
+
 /* Defined in midi_hw.c. Calls a method midi_hw_process_msg(MIDIMsg *msg) which
  * must be defined by the application. */
 void midi_hw_process_byte(char byte);
