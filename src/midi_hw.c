@@ -1,6 +1,9 @@
 #include "mm_midimsgbuilder.h" 
 
 extern void midi_hw_process_msg(MIDIMsg *msg);
+extern void midi_hw_signal_sysex_start(char byte);
+extern void midi_hw_send_sysex_byte(char byte);
+extern void midi_hw_send_sysex_end(char byte);
 
 static MIDIMsgBuilder midiMsgBuilder;
 
